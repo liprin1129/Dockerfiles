@@ -1,0 +1,19 @@
+version: '2.3'
+
+services:
+  face-app:
+    image: liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-tensorflow-boost-vscode
+    restart: 'no'
+    runtime: nvidia
+    privileged: true
+    tty: true
+    stdin_open: true
+    ipc: host
+    user: root
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes: #local:destination
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /home/user170:/home/
+      - /media/user170/SharedData1/Development:/home/shared-data
+      #- /home/
