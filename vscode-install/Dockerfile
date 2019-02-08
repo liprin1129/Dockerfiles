@@ -21,6 +21,7 @@ RUN mkdir /tmp/vscode \
     && cd / \
     && rm -rf /tmp/vscode \
     && code --install-extension ms-python.python \
-    && code --install-extension smockle.xcode-default-theme 
+    && code --install-extension smockle.xcode-default-theme \
     #&& code --install-extension ms-python.python --user-data-dir /home \
     #&& code --install-extension smockle.xcode-default-theme --user-data-dir /home
+    && cd /home/user170
