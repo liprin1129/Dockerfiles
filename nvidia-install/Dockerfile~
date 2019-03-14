@@ -4,8 +4,8 @@ MAINTAINER user170
 
 # SET ENV
 ENV USER user170
-ENV HOME /home/${USER} 
-ENV SHELL /bin/bash
+ENV HOME / home / ${USER} 
+ENV SHELL / bin / bash
 
 # ADD USER 
 RUN useradd -m ${USER} 

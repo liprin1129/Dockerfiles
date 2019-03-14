@@ -1,4 +1,4 @@
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-tensorflow
+FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed
 
 RUN mkdir /tmp/boost-install \
     && cd /tmp/boost-install \

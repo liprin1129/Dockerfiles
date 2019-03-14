@@ -2,7 +2,7 @@ version: '2.3'
 
 services:
   ubuntu16.04_docker:
-    image: liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost-vscode-pytorch
+    image: liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost-vscode
     restart: 'no'
     runtime: nvidia
     privileged: true

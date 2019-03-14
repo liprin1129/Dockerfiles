@@ -1,4 +1,4 @@
-FROM ubuntu16.04:cudagl
+FROM liprin1129/ubuntu16.04:cudagl-cudnn
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
@@ -8,3 +8,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     qt5-doc \
     qt5-doc-html qtbase5-doc-html \
     qtbase5-examples
+
+RUN apt-get update && apt-get install -y --no-install-recommends dbus && \
+    dbus-uuidgen > /var/lib/dbus/machine-id
