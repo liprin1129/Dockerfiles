@@ -25,3 +25,6 @@ RUN mkdir /tmp/vscode \
     && code --install-extension ms-python.python --user-data-dir /home \
     && code --install-extension smockle.xcode-default-theme --user-data-dir /home
     #&& cd /home/user170
+
+RUN export LC_ALL=C && sudo -H pip3 install pylint
+

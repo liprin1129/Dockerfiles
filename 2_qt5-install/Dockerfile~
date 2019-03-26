@@ -1,5 +1,7 @@
 FROM liprin1129/ubuntu16.04:cudagl-cudnn
 
+USER user170
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     qtcreator \

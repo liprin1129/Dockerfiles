@@ -1,0 +1,11 @@
+FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+
+RUN mkdir /tmp/opencv
+RUN cd /tmp/opencv
+RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/3.4.0.zip
+RUN unzip opencv.zip
+RUN wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/3.4.0.zip
+RUN unzip opencv_contrib.zip
+
+RUN pwd
+RUN ls

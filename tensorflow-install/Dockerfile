@@ -1,4 +1,4 @@
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed
+FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost-vscode-pytorch
 
 RUN apt update \
     && apt install -y -qq --no-install-recommends python3-pip python3-tk \

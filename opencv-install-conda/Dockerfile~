@@ -1,25 +1,9 @@
 # We will use Ubuntu for our image
 FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5
 
-# Updating Ubuntu packages
-RUN apt-get update && yes|apt-get upgrade
-RUN apt-get install -y emacs
-
-# Adding wget and bzip2
-RUN apt-get install -y wget bzip2
-
-# Add sudo
-RUN apt-get -y install sudo
-
-# Add user user170 with no password, add to sudo group
-RUN adduser --disabled-password --gecos '' user170
-RUN adduser user170 sudo
-
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER user170
 
 WORKDIR /home/user170/
-RUN chmod a+rwx /home/user170/
 
 #RUN echo `pwd`
 
