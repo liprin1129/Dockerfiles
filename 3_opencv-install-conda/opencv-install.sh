@@ -9,6 +9,9 @@ sudo apt-get install --assume-yes liblapacke-dev libopenblas-dev libgdal-dev che
 sudo mkdir build
 cd build
 
-sudo cmake -DENABLE_CX11=ON -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D FORCE_VTK=ON -D WITH_TBB=ON -D WITH_V4L=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D WITH_CUBLAS=ON -D CUDA_NVCC_FLAGS="-D_FORCE_INLINES" -D WITH_GDAL=ON -D WITH_XINE=ON -D BUILD_EXAMPLES=ON ..
+sudo cmake -DENABLE_CX11=ON -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D FORCE_VTK=ON -D WITH_TBB=ON -D WITH_V4L=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D WITH_CUBLAS=ON -D CUDA_NVCC_FLAGS="-D_FORCE_INLINES" -D WITH_GDAL=ON -D WITH_XINE=ON -D BUILD_EXAMPLES=OFF ..
 
 sudo ln -s /usr/local/cuda/extras/CUPTI/include/GL/glx.h /usr/local/include/GL/glx.h
+sudo ln -s /usr/local/cuda-9.0/extras/CUPTI/include/GL/glu.h /usr/local/include/GL/
+
+make -j(nproc)

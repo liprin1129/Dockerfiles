@@ -32,6 +32,7 @@ RUN conda update --all
 ## Run Jupytewr notebook as Docker main process
 #CMD ["jupyter", "notebook", "--allow-root", "--notebook-dir=/home/user170/notebooks", "--ip='*'", "--port=8888", "--no-browser"]
 
+####################################################
 # TEST CODE START
 #RUN conda create -n 3.6CondaPy python=3.6
 #RUN echo "source activate 3.6CondaPy" > ~/.bashrc
@@ -40,6 +41,13 @@ RUN conda update --all
 #RUN /bin/bash -c conda activate 3.6CondaPy
 #RUN conda install numpy
 # TEST CODE FINISH
+####################################################
+
+RUN conda create -n Py37Conda python=3.7 anaconda
+RUN echo "source activate Py37Conda" > ~/.bashrc
+ENV PATH /home/user170/anaconda3/envs/Py37Conda/bin:$PATH
+
+RUN /bin/bash -c "source ~/.bashrc"
 
 #################################################
 # This should be run on a container             #

@@ -1,4 +1,5 @@
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost-vscode
+#FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost-vscode
+FROM liprin1129/ubuntu16.04:cudagl-cudnn-conda-opencv
 
 RUN sudo -H pip3 install torch torchvision torchsummary
 RUN sudo -H pip3 install jupyterlab
