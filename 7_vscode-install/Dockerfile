@@ -1,4 +1,4 @@
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost
+FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-py-opencv-boost-pytorch
 
 # Replace 1000 with your user / group id
 #RUN export uid=1000 gid=1000 && \
@@ -9,22 +9,24 @@ FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost
 #    chmod 0440 /etc/sudoers.d/user170 && \
 #    chown ${uid}:${gid} -R /home/user170
 
+RUN apt update && \
+    apt install -y -qq --no-install-recommends libnotify4 libnss3 libsecret-1-0 libsecret-1-0 libgtk-3-0 libgconf-2-4 libxss1 libxtst6
+
 #USER user170
 #ENV HOME /home/user170
 
 RUN mkdir /tmp/vscode \
-    && cd /tmp/vscode \
-    && sudo apt update \
-    && sudo apt install -y -qq --no-install-recommends libnotify4 libnss3 libsecret-1-0 libsecret-1-0 libgtk-3-0 libgconf-2-4 libxss1 libxtst6 \
-    && wget -O vscode.deb https://go.microsoft.com/fwlink/?LinkID=760868 \
-    && sudo dpkg -i vscode.deb \
-    && cd / \
-    && rm -rf /tmp/vscode \
+&& cd /tmp/vscode \
+&& wget -O vscode.deb https://go.microsoft.com/fwlink/?LinkID=760868
+
+RUN dpkg -i /tmp/vscode/vscode.deb
+
+RUN rm -rf /tmp/* \
     #&& code --install-extension ms-python.python \
-    #&& code --install-extension smockle.xcode-default-theme \
+    #&& code --install-extension smockle.xcode-default-theme
     && code --install-extension ms-python.python --user-data-dir /home \
     && code --install-extension smockle.xcode-default-theme --user-data-dir /home
     #&& cd /home/user170
 
-RUN export LC_ALL=C && sudo -H pip3 install pylint
+RUN echo "export LC_ALL=C" >> ~/.bashrc && sudo -H pip3 install pylint
 
