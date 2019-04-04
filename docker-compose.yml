@@ -17,4 +17,4 @@ services:
     volumes: #local:destination
       - /tmp/.X11-unix:/tmp/.X11-unix
       #- /home/user170:/home/user170
-      - /media/user170/SharedData/Development:/home/user170/shared-data
+      #- /media/user170/SharedData/Development:/home/user170/shared-data
