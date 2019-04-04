@@ -35,7 +35,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D INSTALL_C_EXAMPLES=OFF \
 -D OPENCV_ENABLE_NONFREE=OFF \
 -D OPENCV_EXTRA_MODULES_PATH=/tmp/opencv_contrib-3.4.5/modules \ #-D BUILD_opencv_python3=ON \ #-D BUILD_opencv_python2=ON \
--D PYTHON3_EXECUTABLE=/usr/local/bin/python3.7 \
+-D PYTHON3_EXECUTABLE=/usr/bin/python3.5 \
 -D BUILD_EXAMPLES=OFF \
 -D WITH_TBB=ON \
 -D WITH_QT=ON \
@@ -54,7 +54,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D CMAKE_LIBRARY_PATH=/usr/local/cuda-9.0/lib64/stubs ..
 
 RUN cd /tmp/opencv-3.4.5/build &&\
-make -j6 &&\
+make -j4 &&\
 make install
 
 ##############################
