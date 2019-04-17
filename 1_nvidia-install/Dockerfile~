@@ -34,8 +34,8 @@ RUN gpasswd -a ${USER}  sudo
 # SET USER PASSWARDS
 RUN echo  "${USER}:KSv65nFs" | chpasswd
 
-USER ${USER}
-WORKDIR ${HOME}
+#USER ${USER}
+#WORKDIR ${HOME}
 
 RUN chmod a+rwx /home/user170/
 

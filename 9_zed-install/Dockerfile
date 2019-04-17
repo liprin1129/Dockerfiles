@@ -1,5 +1,5 @@
 #FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-conda-opencv
+FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-py-opencv-boost-pytorch-code
 
 # Setup the ZED SDK
 RUN apt-get update
