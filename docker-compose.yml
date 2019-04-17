@@ -16,5 +16,8 @@ services:
       - DISPLAY=$DISPLAY
     volumes: #local:destination
       - /tmp/.X11-unix:/tmp/.X11-unix
+      #- /home/user170:/home/user170
+      #- /media/user170/SharedData/Development:/home/user170/shared-data
+      - /mnt/B4A2BE4DA2BE1438/Development:/home/user170/shared-data
       - /home/user170/Downloads:/home/user170/Downloads
       - /media/user170/SharedData/Development:/home/user170/shared-data
