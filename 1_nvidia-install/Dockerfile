@@ -1,4 +1,4 @@
-FROM nvidia/cudagl:9.0-devel-ubuntu16.04
+FROM nvidia/cudagl:10.0-devel-ubuntu16.04
 
 # Updating Ubuntu packages
 RUN apt-get update && yes|apt-get upgrade
@@ -19,10 +19,10 @@ RUN apt-get -y install sudo
 ##
 
 # Add User
-#MAINTAINER user170
+#MAINTAINER dockerBuntu
 
 # SET ENV
-ENV USER user170
+ENV USER dockerBuntu
 ENV HOME /home/${USER} 
 
 # ADD USER 
@@ -37,7 +37,7 @@ RUN echo  "${USER}:KSv65nFs" | chpasswd
 #USER ${USER}
 #WORKDIR ${HOME}
 
-RUN chmod a+rwx /home/user170/
+RUN chmod a+rwx ${HOME}
 
 ####################################################
 # Update to latest cuDNN v7 (7.4.1.5) for CUDA 9.0 #
