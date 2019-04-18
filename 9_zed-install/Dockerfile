@@ -1,13 +1,13 @@
 #FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-conda-opencv
+FROM liprin1129/ubuntu16.04:cudagl10-cudnn-qt5-py-opencv
 
 # Setup the ZED SDK
 RUN apt-get update
 RUN apt-get install lsb-release wget less udev sudo apt-transport-https -y
-RUN wget -O ZED_SDK_Linux_Ubuntu16.run https://download.stereolabs.com/zedsdk/2.7/ubuntu16_cuda9 
-RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
-RUN chmod +x ZED_SDK_Linux_Ubuntu16.run ; ./ZED_SDK_Linux_Ubuntu16.run silent
-RUN rm -rf ZED_SDK_Linux_Ubuntu16.run
+RUN cd /tmp && wget -O ZED_SDK_Linux_Ubuntu16.run https://www.stereolabs.com/developers/downloads/ZED_SDK_Ubuntu16_v2.7.1.run
+RUN cd /tmp && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+RUN cd /tmp && chmod +x ZED_SDK_Linux_Ubuntu16.run ; ./ZED_SDK_Linux_Ubuntu16.run silent
+RUN rm -rf /tmp/*
 
 # Make some tools happy
 RUN mkdir -p /root/Documents/ZED/
