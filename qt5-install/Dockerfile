@@ -1,4 +1,4 @@
-FROM liprin1129/ubuntu16.04:cudagl-cudnn
+FROM liprin1129/ubuntu16.04:cudagl10-cudnn
 
 #USER user170
 #WORKDIR /home/user170

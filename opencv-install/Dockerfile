@@ -1,5 +1,5 @@
 # We will use Ubuntu for our image
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-py
+FROM liprin1129/ubuntu16.04:cudagl10-cudnn-qt5-py
 
 ##############################
 # INSTALL PACKAGES     #

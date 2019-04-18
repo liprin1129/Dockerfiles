@@ -2,8 +2,9 @@ version: '2.3'
 
 services:
   ubuntu16.04_docker:
-    #image: liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost-vscode-pytorch-tensorflow
-    image: liprin1129/ubuntu16.04:cudagl-cudnn-qt5-py-opencv-boost-pytorch-code
+    #image: liprin1129/ubuntu16.04:cudagl10-cudnn-qt5-opencv-zed-boost-vscode-pytorch-tensorflow
+    #image: liprin1129/ubuntu16.04:cudagl10-cudnn-qt5-py-opencv-boost-pytorch-code
+    image: liprin1129/ubuntu16.04:cudagl10-cudnn-qt5-py-opencv
     restart: 'no'
     runtime: nvidia
     privileged: true
@@ -18,4 +19,4 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       #- /home/user170:/home/user170
       #- /media/user170/SharedData/Development:/home/user170/shared-data
-      - /mnt/B4A2BE4DA2BE1438/Development:/home/user170/shared-data
+      #- /mnt/B4A2BE4DA2BE1438/Development:/home/user170/shared-data
