@@ -6,15 +6,21 @@ FROM ubuntu:18.04
 # INSTALL PACKAGES     #
 ##############################
 RUN apt update
-RUN apt install -y build-essential cmake unzip pkg-config &&\
-RUN apt install -y libjpeg-dev libpng-dev libtiff-dev &&\
-RUN apt install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev &&\
-RUN apt install -y libxvidcore-dev libx264-dev &&\
-RUN apt install -y libgtk-3-dev &&\
+RUN apt install -y build-essential cmake unzip pkg-config
+RUN apt install -y libjpeg-dev libpng-dev libtiff-dev
+RUN apt install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+RUN apt install -y libxvidcore-dev libx264-dev
+RUN apt install -y libgtk-3-dev
 RUN apt install -y libatlas-base-dev gfortran
 #apt install -y software-properties-common
 RUN apt install -y python-dev python-pip
 RUN apt install -y python3-dev python3-pip
+RUN apt install -y wget
+RUN apt install -y unzip
+RUN apt install -y sudo 
+
+RUN sudo -H pip install numpy matplotlib tqdm
+RUN sudo -H pip3 install numpy matplotlib tqdm
 
 ##############################
 # DOWNLOAD OPENCV     #
@@ -42,24 +48,24 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 #-D PYTHON3_EXECUTABLE=/usr/bin/python3.5 \
 -D BUILD_EXAMPLES=OFF \
 -D WITH_TBB=ON \
--D WITH_QT=NO \
--D WITH_OPENGL=ON \
+#-D WITH_QT=NO \
+#-D WITH_OPENGL=ON \
 -D WITH_V4L=ON \
 -D WITH_FFMPEG=ON \
 -D WITH_XINE=ON \
 -D BUILD_NEW_PYTHON_SUPPORT=ON \
--D WITH_CUBLAS=ON \
+#-D WITH_CUBLAS=ON \
 -D WITH_NVCUVID=ON \
--D ENABLE_FAST_MATH=ON \
--D WITH_CUDA=ON \
--D CUDA_FAST_MATH=ON \
--D CUDA_ARCH_BIN="6.1" \
--D CUDA_ARCH_PTX="6.1" \
--D CMAKE_LIBRARY_PATH=/usr/local/cuda-9.0/lib64/stubs ..
+-D ENABLE_FAST_MATH=ON ..
+#-D WITH_CUDA=ON \
+#-D CUDA_FAST_MATH=ON \
+#-D CUDA_ARCH_BIN="6.1" \
+#-D CUDA_ARCH_PTX="6.1" \
+#-D CMAKE_LIBRARY_PATH=/usr/local/cuda-9.0/lib64/stubs ..
 
-#RUN cd /tmp/opencv-3.4.5/build &&\
-#make -j4 &&\
-#make install
+RUN cd /tmp/opencv-3.4.5/build &&\
+make -j16 &&\
+make install
 
 ##############################
 # REMOVE DOWNLOADED FILE     #
