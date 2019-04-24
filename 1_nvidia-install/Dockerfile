@@ -1,28 +1,16 @@
-FROM nvidia/cudagl:10.0-devel-ubuntu16.04
+FROM nvidia/cudagl:10.0-devel-ubuntu18.04
 
 # Updating Ubuntu packages
-RUN apt-get update && yes|apt-get upgrade
-RUN apt-get install -y emacs
+RUN apt-get update && yes | apt-get upgrade
 
-# Adding wget and bzip2
-RUN apt-get install -y wget bzip2
-
-# Add sudo
-RUN apt-get -y install sudo
-
-##
-## Add user user170 with no password, add to sudo group
-#RUN adduser --disabled-password --gecos '' user170
-#RUN adduser user170 sudo
-
-#RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-##
-
-# Add User
-#MAINTAINER dockerBuntu
+# Adding emacs wget and bzip2 sudo
+RUN apt update && apt install -y software-properties-common
+#RUN add-apt-repository -r ppa:kelleyk/emacs
+#RUN apt update && apt install -y emacs25-nox wget bzip2 sudo
+RUN apt update && apt install -y wget bzip2 sudo
 
 # SET ENV
-ENV USER dockerBuntu
+ENV USER dockerbuntu
 ENV HOME /home/${USER} 
 
 # ADD USER 

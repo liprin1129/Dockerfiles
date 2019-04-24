@@ -1,5 +1,5 @@
 # We will use Ubuntu for our image
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-py
+FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5
 
 ##############################
 # INSTALL PACKAGES     #
@@ -23,6 +23,11 @@ wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/3.4.
 unzip opencv.zip &&\
 unzip opencv_contrib.zip
 
+RUN apt install -y python3-pip python3-dev
+RUN apt install -y python-pip python-dev
+RUN pip install numpy matplotlib
+RUN pip3 install numpy matplotlib
+
 ##############################
 # CMAKE AND MAKE OPENCV     #
 ##############################
@@ -34,11 +39,13 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D INSTALL_PYTHON_EXAMPLES=OFF \
 -D INSTALL_C_EXAMPLES=OFF \
 -D OPENCV_ENABLE_NONFREE=OFF \
--D OPENCV_EXTRA_MODULES_PATH=/tmp/opencv_contrib-3.4.5/modules \ #-D BUILD_opencv_python3=ON \ #-D BUILD_opencv_python2=ON \
--D PYTHON3_EXECUTABLE=/usr/bin/python3.5 \
+-D OPENCV_EXTRA_MODULES_PATH=/tmp/opencv_contrib-3.4.5/modules \
+-D BUILD_opencv_python3=ON \
+-D BUILD_opencv_python2=ON \
+#-D PYTHON3_EXECUTABLE=/usr/bin/python3.6 \
 -D BUILD_EXAMPLES=OFF \
 -D WITH_TBB=ON \
--D WITH_QT=ON \
+-D WITH_QT=OFF \
 -D WITH_OPENGL=ON \
 -D WITH_V4L=ON \
 -D WITH_FFMPEG=ON \
@@ -54,10 +61,10 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D CMAKE_LIBRARY_PATH=/usr/local/cuda-9.0/lib64/stubs ..
 
 RUN cd /tmp/opencv-3.4.5/build &&\
-make -j4 &&\
+make -j6 &&\
 make install
 
 ##############################
 # REMOVE DOWNLOADED FILE     #
 ##############################
-RUN rm -rf /tmp/*
+#RUN rm -rf /tmp/*

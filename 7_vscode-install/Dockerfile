@@ -1,4 +1,4 @@
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-py-opencv-boost-pytorch
+FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-opencv
 
 # Replace 1000 with your user / group id
 #RUN export uid=1000 gid=1000 && \
@@ -21,6 +21,8 @@ RUN mkdir /tmp/vscode \
 
 RUN dpkg -i /tmp/vscode/vscode.deb
 
+RUN apt install -y libasound2
+
 RUN rm -rf /tmp/* \
     #&& code --install-extension ms-python.python \
     #&& code --install-extension smockle.xcode-default-theme
@@ -28,5 +30,6 @@ RUN rm -rf /tmp/* \
     && code --install-extension smockle.xcode-default-theme --user-data-dir /home
     #&& cd /home/user170
 
-RUN echo "export LC_ALL=C" >> ~/.bashrc && sudo -H pip3 install pylint
-
+RUN echo "export LC_ALL=C" >> ~/.bashrc
+RUN sudo -H pip3 install pylint
+RUN sudo -H pip install pylint
