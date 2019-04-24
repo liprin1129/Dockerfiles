@@ -1,0 +1,98 @@
+# We will use Ubuntu for our image
+<<<<<<< HEAD:4_opencv-install/Dockerfile
+FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5
+=======
+FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-py37
+>>>>>>> master:opencv-install/Dockerfile~
+
+##############################
+# INSTALL PACKAGES     #
+##############################
+RUN apt update && \
+#apt install -y --allow-change-held-packages libcudnn7 libcudnn7-dev libnccl-dev libnccl2 &&\
+apt install -y build-essential cmake unzip pkg-config &&\
+apt install -y libjpeg-dev libpng-dev libtiff-dev &&\
+apt install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev &&\
+apt install -y libxvidcore-dev libx264-dev &&\
+apt install -y libgtk-3-dev &&\
+apt install -y libatlas-base-dev gfortran &&\
+apt install -y software-properties-common
+
+
+##############################
+# DOWNLOAD OPENCV     #
+##############################
+# RUN cd /tmp && \
+wget -O opencv.zip https://github.com/opencv/opencv/archive/3.4.5.zip &&\
+wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/3.4.5.zip &&\
+unzip opencv.zip &&\
+unzip opencv_contrib.zip
+
+RUN apt install -y python3-pip python3-dev
+RUN apt install -y python-pip python-dev
+RUN pip install numpy matplotlib
+RUN pip3 install numpy matplotlib
+
+##############################
+# CMAKE AND MAKE OPENCV     #
+##############################
+# RUN cd /tmp/opencv-3.4.5 &&\
+mkdir build &&\
+cd build &&\
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+-D CMAKE_INSTALL_PREFIX=/usr/local \
+-D INSTALL_PYTHON_EXAMPLES=OFF \
+-D INSTALL_C_EXAMPLES=OFF \
+-D OPENCV_ENABLE_NONFREE=OFF \
+<<<<<<< HEAD:4_opencv-install/Dockerfile
+-D OPENCV_EXTRA_MODULES_PATH=/tmp/opencv_contrib-3.4.5/modules \
+-D BUILD_opencv_python3=ON \
+-D BUILD_opencv_python2=ON \
+#-D PYTHON3_EXECUTABLE=/usr/bin/python3.6 \
+=======
+-D OPENCV_EXTRA_MODULES_PATH=/tmp/opencv_contrib-3.4.5/modules \ #-D BUILD_opencv_python3=ON \ #-D BUILD_opencv_python2=ON \
+-D PYTHON3_EXECUTABLE=/usr/bin/python3.7 \
+>>>>>>> master:opencv-install/Dockerfile~
+-D BUILD_EXAMPLES=OFF \
+-D WITH_TBB=ON \
+-D WITH_QT=OFF \
+-D WITH_OPENGL=ON \
+-D WITH_V4L=ON \
+-D WITH_FFMPEG=ON \
+-D WITH_XINE=ON \
+-D BUILD_NEW_PYTHON_SUPPORT=ON \
+-D WITH_CUBLAS=ON \
+-D WITH_NVCUVID=ON \
+-D ENABLE_FAST_MATH=ON \
+-D WITH_CUDA=ON \
+-D CUDA_FAST_MATH=ON \
+-D CUDA_ARCH_BIN="6.1" \
+-D CUDA_ARCH_PTX="6.1" \
+-D CMAKE_LIBRARY_PATH=/usr/local/cuda-9.0/lib64/stubs ..
+
+<<<<<<< HEAD:4_opencv-install/Dockerfile
+RUN cd /tmp/opencv-3.4.5/build &&\
+make -j6 &&\
+=======
+#RUN cd /tmp/opencv-3.4.5/build &&\
+make -j4 &&\
+>>>>>>> master:opencv-install/Dockerfile~
+make install
+
+##############################
+# SYMLINK FOR PYTHON     #
+##############################
+#RUN ln -s /usr/local/lib/python3.7/site-packages/cv2/python-3.7/cv2.cpython-37m-x86_64-linux-gnu.so /usr/local/conda/lib/python3.7/site-packages/cv2.so
+
+##############################
+# REMOVE DOWNLOADED FILE     #
+##############################
+<<<<<<< HEAD:4_opencv-install/Dockerfile
+#RUN rm -rf /tmp/*
+=======
+#RUN rm -rf /tmp
+
+
+
+
+>>>>>>> master:opencv-install/Dockerfile~

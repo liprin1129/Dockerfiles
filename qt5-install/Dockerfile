@@ -1,4 +1,8 @@
+<<<<<<< HEAD:2_qt5-install/Dockerfile
 FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5
+=======
+FROM liprin1129/ubuntu16.04:cudagl10-cudnn
+>>>>>>> master:qt5-install/Dockerfile
 
 RUN sed -i 's/http:\/\/us./http:\/\/jp./g' /etc/apt/sources.list
 

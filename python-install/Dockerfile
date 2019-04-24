@@ -1,4 +1,4 @@
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5
+FROM liprin1129/ubuntu16.04:cudagl10-cudnn-qt5
 
 ##############################
 # INSTALL PYTHON PACKAGES    #
@@ -22,7 +22,7 @@ FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5
 #RUN rm -rf /tmp/*
 
 # DEFAULT PYTHON
-RUN apt update && \
-apt install -y python3-dev python3-tk python3-pip
+RUN apt update \
+&& apt install -y python3-dev python3-tk python3-pip
 
 RUN sudo -H pip3 install numpy
