@@ -3,7 +3,7 @@ version: '2.3'
 services:
   ubuntu18.04_docker:
     #image: liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost-vscode-pytorch-tensorflow
-    image: liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-opencv-zed-code
+    image: liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-opencv
     restart: 'no'
     runtime: nvidia
     privileged: true
@@ -17,6 +17,7 @@ services:
     volumes: #local:destination
       - /tmp/.X11-unix:/tmp/.X11-unix
       #- /home/user170:/home/user170
-      - /media/user170/SharedData/Development:/shared-data
+      #- /media/user170/SharedData/Development:/shared-data
       #- /home/user170/Downloads:/home/user170/Downloads
       #- /media/user170/SharedData/Development:/home/user170/shared-data
+      -  /mnt/DataDisk/Development:/Development
