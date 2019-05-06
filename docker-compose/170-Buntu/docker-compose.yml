@@ -4,6 +4,7 @@ services:
   ubuntu18.04_docker:
     #image: liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost-vscode-pytorch-tensorflow
     image: liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-opencv
+    container_name: dockerbuntu
     restart: 'no'
     runtime: nvidia
     privileged: true
@@ -21,3 +22,4 @@ services:
       #- /home/user170/Downloads:/home/user170/Downloads
       #- /media/user170/SharedData/Development:/home/user170/shared-data
       -  /mnt/DataDisk/Development:/Development
+      - /home/purebuntu/Downloads:/home/dockerbuntu/
