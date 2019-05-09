@@ -1,0 +1,21 @@
+version: '2.3'
+
+services:
+  ubuntu18.04_docker:
+    #image: liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost-vscode-pytorch-tensorflow
+    image: liprin1129/densepose:c2-cuda9-cudnn7-wdata
+    container_name: docker_densepose
+    restart: 'no'
+    runtime: nvidia
+    privileged: true
+    tty: true
+    stdin_open: true
+    ipc: host
+    user: root
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes: #local:destination
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /media/user170/SharedData/Development/Personal_Dev/Machine-Learning/PoseEstimation/densepose/DensePoseData:/denseposedata
+      - /media/user170/SharedData/Development/Personal_Dev/Machine-Learning/Data/COCO-Dataset/coco:/coco
+      - /home/user170/Downloads:/home/Downloads
