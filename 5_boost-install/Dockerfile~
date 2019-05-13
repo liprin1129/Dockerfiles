@@ -1,6 +1,0 @@
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-tensorflow
-
-RUN cd /home/Download/boost_1_69_0 \
-    && ./bootstrap.sh --prefix=/usr/ \
-    && ./b2 \
-    && ./b2 install

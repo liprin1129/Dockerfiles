@@ -19,6 +19,5 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       #- /home/user170:/home/user170
       #- /media/user170/SharedData/Development:/shared-data
-      #- /home/user170/Downloads:/home/user170/Downloads
-      - /media/user170/SharedData/Development:/shared-data
-
+      - /home/user170/Downloads:/home/Downloads
+      - /media/user170/DataDisk/DEVs:/DEVs
