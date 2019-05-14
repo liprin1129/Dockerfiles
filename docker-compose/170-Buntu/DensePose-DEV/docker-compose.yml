@@ -16,6 +16,6 @@ services:
       - DISPLAY=$DISPLAY
     volumes: #local:destination
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - /media/user170/SharedData/Development/Personal_Dev/Machine-Learning/PoseEstimation/densepose/DensePoseData:/denseposedata
-      - /media/user170/SharedData/Development/Personal_Dev/Machine-Learning/Data/COCO-Dataset/coco:/coco
+      - /media/user170/DataDisk/DEVs/Personal-Dev/Machine-Learning/PoseEstimation/densepose/DensePoseData:/denseposedata
+      - /media/user170/DataDisk/DATASETs/COCO-Dataset:/coco
       - /home/user170/Downloads:/home/Downloads
