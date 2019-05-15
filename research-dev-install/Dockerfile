@@ -9,6 +9,15 @@ RUN apt install libprotobuf-dev protobuf-compiler
 RUN apt install libhdf5-serial-dev
 RUN apt install libncurses5-dev
 
+###################
+# PYTORCH INSTALL #
+###################
+RUN pip --no-cache-dir install https://download.pytorch.org/whl/cu100/torch-1.1.0-cp27-cp27mu-linux_x86_64.whl
+RUN pip --no-cache-dir install torchvision
+
+#################
+# CMAKE INSTALL #
+#################
 RUN cd /tmp \
     && wget https://github.com/Kitware/CMake/releases/download/v3.14.4/cmake-3.14.4.tar.gz \
     && tar xzf cmake-3.14.4.tar.gz \
@@ -21,7 +30,10 @@ RUN cd /tmp/cmake-3.14.4 \
     && cmake -D BUILD_CursesDialog=ON \
     && make -j8 \
     && make install
-    
+
+####################
+# OPENPOSE INSTALL #
+####################
 # https://github.com/adujardin/zed-openpose
 RUN cd /home/dockerbuntu/ \
     && git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose/
