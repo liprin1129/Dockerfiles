@@ -1,5 +1,5 @@
 #FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-opencv
-FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-opencv-zed
+FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-opencv-zed
 
 # Replace 1000 with your user / group id
 #RUN export uid=1000 gid=1000 && \
