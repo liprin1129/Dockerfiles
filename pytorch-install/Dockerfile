@@ -1,7 +1,9 @@
 #FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost-vscode
-FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-py-opencv-boost
+FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-opencv-vscode-zed
 
-RUN sudo -H pip3 install torch torchvision torchsummary
+ENV DEBIAN_FRONTEND=noninteractive
+
+#RUN sudo -H pip3 install torch torchvision torchsummary
 RUN sudo -H pip3 install jupyterlab
 RUN sudo -H pip3 install matplotlib numpy pandas scikit-learn scikit-image
 RUN sudo -H pip3 install requests
@@ -14,5 +16,11 @@ apt install -y fonts-liberation libnspr4 libnss3 lsb-release
 RUN cd /tmp \
     && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
     && dpkg -i google-chrome-stable_current_amd64.deb
+
+RUN cd /tmp \
+    && sudo -H pip3 install https://download.pytorch.org/whl/cu100/torch-1.1.0-cp36-cp36m-linux_x86_64.whl
+
+RUN cd /tmp \
+    && sudo -H pip3 install https://download.pytorch.org/whl/cu100/torchvision-0.3.0-cp36-cp36m-linux_x86_64.whl
 
 RUN rm -rf /tmp/*

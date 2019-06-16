@@ -2,8 +2,8 @@ version: '2.3'
 
 services:
   ubuntu18.04_docker:
-    #image: liprin1129/openpose:cudagl10.0-cudnn7.5-boost-vscode-opencv-zed
-    image: liprin1129/openpose:PUReBuntu
+    #image: liprin1129/openpose:PUReBuntu
+    image: liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-pytorch-opencv-vscode
     container_name: dockerbuntu
     restart: 'no'
     runtime: nvidia
@@ -21,3 +21,4 @@ services:
       #- /media/user170/SharedData/Development:/shared-data
       - /home/purebuntu/Downloads:/home/Downloads
       - /mnt/DataDisk/Development:/DEVs
+      - /mnt/DataDisk/Development/DATASETs/:/DATASETs

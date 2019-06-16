@@ -1,4 +1,4 @@
-FROM nvidia/cudagl:10.0-devel-ubuntu18.04
+FROM nvidia/cudagl:9.0-devel-ubuntu18.04
 
 # Updating Ubuntu packages
 RUN apt-get update && yes | apt-get upgrade
