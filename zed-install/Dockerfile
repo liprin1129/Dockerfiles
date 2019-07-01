@@ -1,4 +1,4 @@
-FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-opencv
+FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-pytorch-opencv-vscode
 
 # The runtime image might be enough, depending on the need
 
