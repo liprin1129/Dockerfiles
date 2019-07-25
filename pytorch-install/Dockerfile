@@ -1,9 +1,6 @@
-<<<<<<< Updated upstream
 #FROM liprin1129/ubuntu16.04:cudagl-cudnn-qt5-opencv-zed-boost-vscode
 FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-opencv-vscode-zed
-=======
-FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost
->>>>>>> Stashed changes
+#FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost
 
 ENV DEBIAN_FRONTEND=noninteractive
 

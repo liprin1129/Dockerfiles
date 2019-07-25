@@ -1,4 +1,6 @@
-FROM nvidia/cudagl:9.0-devel-ubuntu18.04
+FROM nvidia/cudagl:10.0-devel-ubuntu18.04
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Updating Ubuntu packages
 RUN apt-get update && yes | apt-get upgrade

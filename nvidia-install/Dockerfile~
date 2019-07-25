@@ -1,43 +1,31 @@
-FROM nvidia/cudagl:10.0-devel-ubuntu18.04
+FROM nvidia/cudagl:9.0-devel-ubuntu18.04
 
 # Updating Ubuntu packages
 RUN apt-get update && yes | apt-get upgrade
-RUN apt-get install -y emacs25-nox
 
-# Adding wget and bzip2
-RUN apt-get install -y wget bzip2
-
-# Add sudo
-RUN apt-get -y install sudo
-
-##
-## Add user user170 with no password, add to sudo group
-#RUN adduser --disabled-password --gecos '' user170
-#RUN adduser user170 sudo
-
-#RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-##
-
-# Add User
-#MAINTAINER dockerBuntu
+# Adding emacs wget and bzip2 sudo
+RUN apt update && apt install -y software-properties-common
+#RUN add-apt-repository -r ppa:kelleyk/emacs
+#RUN apt update && apt install -y emacs25-nox
+RUN apt update && apt install -y wget bzip2 sudo g++
 
 # SET ENV
-ENV USER dockerBuntu
-ENV HOME /home/${USER} 
+#ENV USER dockerbuntu
+#ENV HOME /home/${USER} 
 
 # ADD USER 
-RUN useradd -m ${USER}
+#RUN useradd -m ${USER}
 
 # GIVE USER SUDO AUTHENTICATION 
-RUN gpasswd -a ${USER}  sudo 
+#RUN gpasswd -a ${USER}  sudo 
 
 # SET USER PASSWARDS
-RUN echo  "${USER}:KSv65nFs" | chpasswd
+#RUN echo  "${USER}:KSv65nFs" | chpasswd
 
 #USER ${USER}
-#WORKDIR ${HOME}
+##WORKDIR ${HOME}
 
-RUN chmod a+rwx ${HOME}
+#RUN chmod a+rwx ${HOME}
 
 ####################################################
 # Update to latest cuDNN v7 (7.4.1.5) for CUDA 9.0 #
@@ -86,3 +74,40 @@ ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPA
 RUN sudo apt update && \
     sudo apt install -y --no-install-recommends mesa-utils x11-apps && \
     sudo rm -rf /var/lib/apt/lists/*
+
+#################
+# INSTALL CMAKE #
+#################
+RUN cd /tmp \
+    && wget https://github.com/Kitware/CMake/releases/download/v3.14.4/cmake-3.14.4.tar.gz \
+    && tar xzf cmake-3.14.4.tar.gz
+
+RUN cd /tmp/cmake-3.14.4 \
+    && ./bootstrap \
+    && make install
+
+RUN cd /tmp/cmake-3.14.4 \
+    && cmake -D BUILD_CursesDialog=ON \
+    && make -j8 \
+    && make install
+
+RUN rm -rf /tmp/*
+
+#####################
+# Update apt mirror #
+#####################
+
+RUN cd /etc/apt/ \
+    && wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.google.com/open?id=1ErreuroHXiRlvbaGRCabKUYcxleuTwZ2' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ErreuroHXiRlvbaGRCabKUYcxleuTwZ2" -O sources.list && rm -rf /etc/apt/cookies.txt
+
+#######################
+# Install Python3-dev #
+#######################
+
+RUN apt update
+RUN apt install -y python3-dev libxml2-dev libxslt-dev
+
+#######################
+# Install Emacs25-nox #
+#######################
+RUN apt install -y emacs25-nox

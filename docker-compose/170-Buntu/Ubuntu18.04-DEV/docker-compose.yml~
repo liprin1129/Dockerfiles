@@ -7,19 +7,16 @@ services:
     container_name: dockerbuntu
     restart: 'no'
     #runtime: nvidia
-    devices:
-      - /dev/nvidiactl
-      - /dev/nvidia-uvm
-      - /dev/nvidia0
+    #gpus: all
     privileged: true
     tty: true
     stdin_open: true
     ipc: host
     user: root
+    #user: dockerbuntu
     environment:
       - DISPLAY=$DISPLAY
     volumes: #local:destination
-      #- nvidia_driver_418.67:/usr/local/nvidia:ro
       - /tmp/.X11-unix:/tmp/.X11-unix
       #- /home/user170:/home/user170
       #- /media/user170/SharedData/Development:/shared-data
@@ -27,5 +24,3 @@ services:
       - /mnt/08F8996AF8995732/DEVs:/DEVs
       - /mnt/08F8996AF8995732/DATASETs:/DATASETs
       #- /home/user170/apt-docker:/etc/apt
-
-    
