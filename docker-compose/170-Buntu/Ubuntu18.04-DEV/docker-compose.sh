@@ -3,6 +3,7 @@ docker run \
        --rm -it \
        --env=DISPLAY \
        --privileged \
+       --ipc host \
        -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
        -v /home/user170/Downloads:/home/Downloads \
        -v /mnt/08F8996AF8995732/DEVs:/DEVs -v \
