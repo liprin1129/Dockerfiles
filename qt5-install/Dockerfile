@@ -1,52 +1,20 @@
-<<<<<<< HEAD:2_qt5-install/Dockerfile
 FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5
-=======
-FROM liprin1129/ubuntu16.04:cudagl10-cudnn
->>>>>>> master:qt5-install/Dockerfile
 
-RUN sed -i 's/http:\/\/us./http:\/\/jp./g' /etc/apt/sources.list
+#RUN apt-get update && \
+#    apt-get install -y --no-install-recommends \
+#    	    build-essential \
+#	    qtcreator \
+#    	    qt5-default \
+#    	    libqt5opengl5-dev \
+#    	    qt5-doc \
+#    	    qt5-doc-html qtbase5-doc-html \
+#    	    qtbase5-examples \
+#    	    dbus
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    	    build-essential \
-	    qtcreator \
-    	    qt5-default \
-    	    libqt5opengl5-dev \
-    	    qt5-doc \
-    	    qt5-doc-html qtbase5-doc-html \
-    	    qtbase5-examples \
-    	    dbus
+RUN apt update
+RUN apt install -y --no-install-recommends build-essential qt5-default qtcreator qtbase5-examples qt5-doc qt5-doc-html qtbase5-doc-html
+RUN apt install -y --no-install-recommends libqt5opengl5-dev dbus
 
-RUN apt-get install -y --no-install-recommends dbus
+RUN apt install -y --no-install-recommends dbus
 RUN dbus-uuidgen > /var/lib/dbus/machine-id
 
-
-####################################
-#RUN apt update 
-#RUN apt install -y unzip wget
-#RUN apt install -y libxkbcommon-x11-dev
-
-#ENV QT_VERSION_A=5.12
-#ENV QT_VERSION_B=5.12.3
-#ENV QT_VERSION_SCRIPT=5123
-#RUN cd /tmp \
-#    && wget https://download.qt.io/archive/qt/${QT_VERSION_A}/${QT_VERSION_B}/qt-opensource-linux-x64-${QT_VERSION_B}.run
-
-#RUN cd /tmp \
-#    && chmod +x qt-opensource-linux-x64-${QT_VERSION_B}.run 
-
-#COPY qt-noninteractive.qs /tmp/qt-noninteractive.qs
-
-#RUN cd /tmp \
-#    && ./qt-opensource-linux-x64-${QT_VERSION_B}.run --script qt-noninteractive.qs -verbose -platform minimal
-
-#RUN rm -rf /tmp
-
-## EXTRA SETTING
-#RUN chown dockerbuntu:dockerbuntu -R /home/dockerbuntu/
-
-#RUN apt-get install -y --no-install-recommends dbus
-#RUN dbus-uuidgen > /var/lib/dbus/machine-id
-
-#RUN sudo apt install -y --no-install-recommends \
-#    build-essential libfontconfig1 mesa-common-dev libglu1-mesa-dev

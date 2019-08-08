@@ -1,0 +1,9 @@
+FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-qt5-pytorch-zed
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN cd /tmp \
+    && git clone https://github.com/openai/gym.git
+
+RUN cd /tmp/gym \
+    && pip install -e . [all]

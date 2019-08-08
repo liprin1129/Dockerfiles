@@ -2,6 +2,17 @@ FROM nvidia/cudagl:10.0-devel-ubuntu18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+#####################
+# Update apt mirror #
+#####################
+#RUN cd /etc/apt/ \
+#    && wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /#tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.google.com/open?id=1aM5Xk-GTUfW-#VhLesopwKRE3I1yHtLFw' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1aM5Xk-GTUfW-VhLesopwKRE3I1yHtLFw" -O #sources.list && rm -rf /etc/apt/cookies.txt
+RUN sed -i 's|http://archive.ubuntu.com/ubuntu/|http://ubuntutym.u-toyama.ac.jp/ubuntu/|' /etc/apt/sources.list
+RUN sed -i 's|http://security.ubuntu.com/ubuntu/|http://ubuntutym.u-toyama.ac.jp/ubuntu/|' /etc/apt/sources.list
+
+#####################
+# Ubuntu Update     #
+#####################
 # Updating Ubuntu packages
 RUN apt-get update && yes | apt-get upgrade
 
@@ -90,17 +101,10 @@ RUN cd /tmp/cmake-3.14.4 \
 
 RUN cd /tmp/cmake-3.14.4 \
     && cmake -D BUILD_CursesDialog=ON \
-    && make -j8 \
+    && make -j16 \
     && make install
 
 RUN rm -rf /tmp/*
-
-#####################
-# Update apt mirror #
-#####################
-
-RUN cd /etc/apt/ \
-    && wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.google.com/open?id=1ErreuroHXiRlvbaGRCabKUYcxleuTwZ2' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ErreuroHXiRlvbaGRCabKUYcxleuTwZ2" -O sources.list && rm -rf /etc/apt/cookies.txt
 
 #######################
 # Install Python3-dev #

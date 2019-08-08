@@ -1,11 +1,11 @@
 # We will use Ubuntu for our image
 
-FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-pytorch-vscode
+FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-qt5-pytorch
 
 ##############################
 # INSTALL PACKAGES     #
 ##############################
-RUN apt update
+#RUN apt update
 RUN apt install -y build-essential cmake unzip pkg-config
 RUN apt install -y libjpeg-dev libpng-dev libtiff-dev
 RUN apt install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
@@ -42,7 +42,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 #-D PYTHON3_EXECUTABLE=/usr/bin/python3.5 \
 -D BUILD_EXAMPLES=OFF \
 -D WITH_TBB=ON \
--D WITH_QT=NO \
+-D WITH_QT=ON \
 -D WITH_OPENGL=ON \
 -D WITH_V4L=ON \
 -D WITH_FFMPEG=ON \
@@ -54,8 +54,8 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D ENABLE_FAST_MATH=ON \
 -D WITH_CUDA=ON \
 -D CUDA_FAST_MATH=ON \
--D CUDA_ARCH_BIN="6.1" \
--D CUDA_ARCH_PTX="6.1" \
+-D CUDA_ARCH_BIN="7.5" \
+-D CUDA_ARCH_PTX="7.5" \
 -D CMAKE_LIBRARY_PATH=/usr/local/cuda-10.0/lib64/stubs ..
 
 RUN cd /tmp/opencv-3.4.5/build &&\

@@ -1,0 +1,30 @@
+FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-qt5-pytorch-opencv-zed-code
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN cd /tmp \
+    && git clone https://github.com/openai/roboschool && cd roboschool \
+    && rm install_boost.sh install_bullet.sh exports.sh
+
+RUN cd /tmp/roboschool \
+    && wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.google.com/open?id=1qzp7GDv3IOkqQP2uZYHbKSVAnL7IZoX0' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1qzp7GDv3IOkqQP2uZYHbKSVAnL7IZoX0" -O install_bullet.sh && rm -rf /tmp/cookies.txt \
+    && wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.google.com/open?id=1okf8HRn7y1Njv1USyJ-IlX5VLs39PSVk' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1okf8HRn7y1Njv1USyJ-IlX5VLs39PSVk" -O install_boost.sh && rm -rf /tmp/cookies.txt \
+    && wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.google.com/open?id=1IWdAx4ksPxkYAJzqcPYpg4-x0aq2Y0sH' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1IWdAx4ksPxkYAJzqcPYpg4-x0aq2Y0sH" -O exports.sh && rm -rf /tmp/cookies.txt \
+    && chmod +x install_boost.sh install_bullet.sh exports.sh
+
+
+RUN cd /tmp \
+    && apt install -y -qq --no-install-recommends qtbase5-dev libqt5opengl5-dev libassimp-dev cmake patchelf
+
+RUN cd /tmp/roboschool \
+    && ./install_boost.sh
+
+RUN cd /tmp/roboschool \
+    && ./install_bullet.sh
+
+RUN cd /tmp/roboschool \
+    && /bin/bash -c "source exports.sh"
+
+#RUN cd /tmp/roboschool/roboschool/cpp-household && make clean && make -j8 && cd ../.. && pip3 install -e .
+
+#RUN pip3 install tensorflow-gpu
