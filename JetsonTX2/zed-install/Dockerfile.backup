@@ -1,0 +1,30 @@
+FROM opencv:CUDA
+
+# The runtime image might be enough, depending on the need
+
+# Setup the ZED SDK
+RUN apt-get update
+RUN apt-get install lsb-release wget less udev sudo apt-transport-https -y
+
+RUN mkdir /tmp/zed_sdk \
+    && wget -O ZED_SDK_Linux_Ubuntu16.run https://download.stereolabs.com/zedsdk/2.6/ubuntu_cuda9 \
+    && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections \
+    && chmod +x ZED_SDK_Linux_Ubuntu16.run ; ./ZED_SDK_Linux_Ubuntu16.run silent
+
+# Make some tools happy
+RUN mkdir -p /root/Documents/ZED/
+# Install some other packages
+RUN apt-get install nano cmake usbutils git libqt5xml5 libxmu-dev libxi-dev -y
+
+# Replace 1000 with your user / group id
+RUN export uid=1000 gid=1000 && \
+    mkdir -p /home/developer && \
+    echo "developer:x:${uid}:${gid}:Developer,,,:/home/developer:/bin/bash" >> /etc/passwd && \
+    echo "developer:x:${uid}:" >> /etc/group && \
+    echo "developer ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/developer && \
+    chmod 0440 /etc/sudoers.d/developer && \
+    chown ${uid}:${gid} -R /home/developer
+
+USER developer
+ENV HOME /home/developer
+#CMD /usr/bin/firefox
