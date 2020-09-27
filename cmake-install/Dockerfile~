@@ -1,0 +1,16 @@
+FROM liprin1129/dev:v4-vscode
+
+RUN cd /tmp && wget https://github.com/Kitware/CMake/releases/download/v3.18.0-rc2/cmake-3.18.0-rc2.tar.gz
+
+RUN cd /tmp && tar -zxvf cmake-3.18.0-rc2.tar.gz
+
+RUN cd /tmp && cd cmake-3.18.0-rc2 && ./bootstrap
+
+RUN cd /tmp && cd cmake-3.18.0-rc2 && make -j12
+
+RUN cd /tmp && cd cmake-3.18.0-rc2 && make install
+
+RUN cmake --version
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt install -y -qq --no-install-recommends cmake-gui

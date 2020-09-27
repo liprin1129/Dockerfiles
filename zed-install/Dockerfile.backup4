@@ -1,0 +1,33 @@
+FROM face_rec_demo:code_setting
+
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES video,compute,utility
+
+# The runtime image might be enough, depending on the need
+#RUN sed -i 's|http://ubuntutym.u-toyama.ac.jp/ubuntu/|http://archive.ubuntu.com/ubuntu/|' /etc/apt/sources.list
+#RUN sed -i 's|http://ubuntutym.u-toyama.ac.jp/ubuntu/|http://security.ubuntu.com/ubuntu/|' /etc/apt/sources.list
+
+# Setup the ZED SDK
+RUN apt-get update -y && apt-get upgrade -y && apt-get autoremove -y && \
+    apt-get install --no-install-recommends lsb-release wget less udev sudo apt-transport-https libqt5xml5 libxmu-dev libxi-dev -y && \
+    echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections && \
+    rm -rf /var/lib/apt/lists/*
+
+#RUN apt-get update -y && \ 
+#    wget -O ZED_SDK_Linux_Ubuntu18.run https://download.stereolabs.com/zedsdk/3.2/ubuntu18 && \
+#    chmod +x ZED_SDK_Linux_Ubuntu18.run ; ./ZED_SDK_Linux_Ubuntu18.run silent && \
+#    rm ZED_SDK_Linux_Ubuntu18.run && \
+#    rm -rf /var/lib/apt/lists/*
+
+RUN cd /tmp && \
+	wget -O ZED_SDK_3.2_Ubuntu18.run https://download.stereolabs.com/zedsdk/3.2/cu102/ubuntu18
+
+RUN cd /tmp &&\
+	chmod +x ZED_SDK_3.2_Ubuntu18.run; ./ZED_SDK_3.2_Ubuntu18.run silent
+
+RUN cd /tmp &&\
+	rm ZED_SDK_3.2_Ubuntu18.run
+
+RUN cd /tmp &&\
+	rm -rf /var/lib/apt/lists/*
+

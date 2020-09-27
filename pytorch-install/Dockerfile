@@ -1,42 +1,23 @@
-FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-qt5
+FROM liprin1129/dev:v2-python
 
 ENV DEBIAN_FRONTEND=noninteractive
-
-#RUN sudo -H pip3 install torch torchvision torchsummary
-
-#<<<<<<< Updated upstream
-#RUN sudo -H pip3 install jupyterlab
-#RUN sudo -H pip3 install matplotlib numpy pandas scikit-learn scikit-image
-#RUN sudo -H pip3 install requests
-#RUN sudo -H pip3 install h5py
-#=======
-RUN apt install -y python3-pip
 
 RUN pip3 install jupyterlab
 RUN pip3 install matplotlib numpy pandas scikit-learn scikit-image
 RUN pip3 install requests
 RUN pip3 install h5py
-#>>>>>>> Stashed changes
 
-RUN apt-get update \
-    && apt-get install -y -qq --no-install-recommends libappindicator3-1 xdg-utils python3-tk && \
-apt install -y fonts-liberation libnspr4 libnss3 lsb-release
+#RUN apt-get update \
+#    && apt-get install -y -qq --no-install-recommends libappindicator3-1 xdg-utils python3-tk && \
+#apt install -y fonts-liberation libnspr4 libnss3 lsb-release
 
-#RUN cd /tmp \
-#    && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-#    && dpkg -i google-chrome-stable_current_amd64.deb
+RUN pip3 install torch torchvision tensorboard
 
-#RUN rm -rf /tmp/*
+RUN apt update && \
+	apt install -y -qq --no-install-recommends wget unzip firfox
 
-#<<<<<<< Updated upstream
-#RUN cd /tmp \
-#    && sudo -H pip3 install https://download.pytorch.org/whl/cu100/torch-1.1.0-cp36-cp36m-linux_x86_64.whl
-
-#RUN cd /tmp \
-#    && sudo -H pip3 install https://download.pytorch.org/whl/cu100/torchvision-0.3.0-cp36-cp36m-linux_x86_64.whl
-
+RUN cd /tmp && wget https://download.pytorch.org/libtorch/cu102/libtorch-shared-with-deps-1.5.1.zip
+RUN cd /tmp && unzip libtorch-shared-with-deps-1.5.1.zip
+RUN cd /tmp && mv libtorch /usr/local/
 RUN rm -rf /tmp/*
-#=======
-RUN pip3 install https://download.pytorch.org/whl/cu100/torch-1.1.0-cp36-cp36m-linux_x86_64.whl
-RUN pip3 install https://download.pytorch.org/whl/cu100/torchvision-0.3.0-cp36-cp36m-linux_x86_64.whl
-#>>>>>>> Stashed changes
+RUN rm -rf /var/lib/apt/lists/*
