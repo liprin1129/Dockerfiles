@@ -1,4 +1,5 @@
-FROM liprin1129/ubuntu16.04:cudagl10-cudnn-qt5
+#FROM liprin1129/ubuntu16.04:cudagl10-cudnn-qt5
+FROM liprin1129/stock-analysis:cuda10.0-cudnn7.5
 
 ##############################
 # INSTALL PYTHON PACKAGES    #
@@ -25,4 +26,7 @@ FROM liprin1129/ubuntu16.04:cudagl10-cudnn-qt5
 RUN apt update \
 && apt install -y python3-dev python3-tk python3-pip
 
-RUN sudo -H pip3 install numpy
+#RUN sudo -H pip3 install numpy
+RUN pip3 install numpy
+RUN pip3 install pandas
+RUN pip3 install matplotlib

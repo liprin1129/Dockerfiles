@@ -1,4 +1,5 @@
-FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-qt5-pytorch-opencv-zed
+#FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-qt5-pytorch-opencv-zed
+FROM liprin1129/stock-analysis:python
 
 RUN apt update && \
     apt install -y -qq --no-install-recommends libnotify4 libnss3 libsecret-1-0 libsecret-1-0 libgtk-3-0 libgconf-2-4 libxss1 libxtst6
@@ -22,5 +23,5 @@ RUN echo "export LC_ALL=C" >> ~/.bashrc
 RUN apt install -y -qq --no-install-recommends python3-pip
 
 #RUN sudo -H pip3 install setuptools
-RUN pip3 install pylint
+#RUN pip3 install pylint
 #RUN sudo -H pip install setuptools #pylint
