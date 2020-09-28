@@ -6,8 +6,12 @@ docker run \
        --ipc host \
        -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
        -v /home/user170/Downloads:/home/Downloads \
-       -v /mnt/08F8996AF8995732/DEVs:/DEVs \
-       -v /mnt/08F8996AF8995732/DATASETs:/DATASETs \
-       liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-qt5-pytorch-opencv-zed-code
-       #/mnt/08F8996AF8995732/DATASETs:/DATASETs liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-qt5-pytorch-opencv-zed-code-openpose
-       #/mnt/08F8996AF8995732/DATASETs:/DATASETs liprin1129/ubuntu18.04:rl
+       -v /mnt/DataDisk/DEVs:/DEVs \
+       -v /mnt/DataDisk/DATASETs:/DATASETs \
+       liprin1129/dev:2070-10.2-7.3
+#	liprin1129/dev:v8-vscode
+#       -v /home/user170/NVIDIA_CUDA-10.2_Samples:/home/NVIDIA_CUDA-10.2_Samples \
+#	face_col_demo:zed_sdk
+#	face_rec_demo:code_setting
+
+

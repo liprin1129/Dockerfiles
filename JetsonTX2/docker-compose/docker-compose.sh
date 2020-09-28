@@ -1,11 +1,8 @@
-sudo xhost +si:localuser:root
-
+#sudo xhost +si:localuser:root
+#       --runtime nvidia \
 docker run \
---runtime nvidia \
---network host \
---rm -it \
--e DISPLAY=$DISPLAY \
--v /media/user170/DataDisk/DATASETs/:/DATASETs \
--v /media/user170/DataDisk/DEVs/:/DEVs \
-liprin1129/jdocker-base
-
+       --rm -it \
+       -v /usr/bin/qemu-aarch64-static:/usr/bin/qemu-aarch64-static \
+       -v /media/user170/DataDisk/DATASETs/:/DATASETs \
+       -v /media/user170/DataDisk/DEVs/:/DEVs \
+       liprin1129/jdocker-base:qt5-inprogress

@@ -5,7 +5,7 @@ FROM liprin1129/jdocker-base:qt5
 ##############################
 # INSTALL PACKAGES     #
 ##############################
-#RUN apt update
+RUN apt update
 RUN apt install -y build-essential cmake unzip pkg-config
 RUN apt install -y libjpeg-dev libpng-dev libtiff-dev
 RUN apt install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
@@ -14,8 +14,9 @@ RUN apt install -y libgtk-3-dev
 RUN apt install -y libatlas-base-dev gfortran
 #apt install -y software-properties-common
 #RUN apt install -y python-dev python-pip
-#RUN apt install -y python3-dev python3-pip #python3-numpy
-
+RUN apt install -y python3-dev python3-pip #python3-numpy
+#RUN sudo -H pip3 install numpy
+RUN pip3 install numpy
 ##############################
 # DOWNLOAD OPENCV     #
 ##############################
@@ -28,6 +29,8 @@ unzip opencv_contrib.zip
 ##############################
 # CMAKE AND MAKE OPENCV     #
 ##############################
+#-D PYTHON3_EXECUTABLE=/usr/bin/python3.5 \
+
 RUN cd /tmp/opencv-3.4.5 &&\
 mkdir build &&\
 cd build &&\
@@ -36,10 +39,9 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D INSTALL_PYTHON_EXAMPLES=OFF \
 -D INSTALL_C_EXAMPLES=OFF \
 -D OPENCV_ENABLE_NONFREE=OFF \
--D OPENCV_EXTRA_MODULES_PATH=/tmp/opencv_contrib-3.4.5/modules \ 
--D BUILD_opencv_python3=OFF \ 
+-D OPENCV_EXTRA_MODULES_PATH=/tmp/opencv_contrib-3.4.5/modules \
+-D BUILD_opencv_python3=ON \
 -D BUILD_opencv_python2=OFF \
-#-D PYTHON3_EXECUTABLE=/usr/bin/python3.5 \
 -D BUILD_EXAMPLES=OFF \
 -D WITH_TBB=ON \
 -D WITH_QT=ON \
