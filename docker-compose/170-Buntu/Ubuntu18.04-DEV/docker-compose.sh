@@ -8,7 +8,7 @@ docker run \
        -v /home/user170/Downloads:/home/Downloads \
        -v /mnt/DataDisk/DEVs:/DEVs \
        -v /mnt/DataDisk/DATASETs:/DATASETs \
-       liprin1129/dev:2070-10.2-7.3
+       liprin1129/dev:2070-v1-opencv
 #	liprin1129/dev:v8-vscode
 #       -v /home/user170/NVIDIA_CUDA-10.2_Samples:/home/NVIDIA_CUDA-10.2_Samples \
 #	face_col_demo:zed_sdk

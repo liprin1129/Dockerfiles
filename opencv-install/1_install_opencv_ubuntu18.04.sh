@@ -5,11 +5,12 @@ cvVersion="master"
 #rm -rf opencv/build
 #rm -rf opencv_contrib/build
 # Create directory for installation
-mkdir installation
-mkdir installation/OpenCV-"$cvVersion"
+#mkdir installation
+#mkdir installation/OpenCV-"$cvVersion"
 
 
 # Save current working directory
+cd installation/OpenCV-"$cvVersion"
 cwd=$(pwd)
 sudo apt -y update
 sudo apt -y upgrade
@@ -53,6 +54,10 @@ sudo apt -y install python3-dev python3-pip
 sudo apt -y install python3-testresources
 
 cd $cwd
+
+sudo apt -y install gcc-8 g++-8
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8 --slave /usr/bin/gcov gcov /usr/bin/gcov-8
+
 ############ For Python 3 ############
 # create virtual environment
 #python3 -m venv OpenCV-"$cvVersion"-py3
@@ -69,11 +74,16 @@ pip3 install wheel numpy scipy matplotlib scikit-image scikit-learn ipython dlib
 ############ Download OpenCV ############
 
 #git clone https://github.com/opencv/opencv.git
-cd opencv
-git checkout "$cvVersion"
-cd ..
+#cd $cwd/opencv
+#git checkout "$cvVersion"
+#cd ..
  
 #git clone https://github.com/opencv/opencv_contrib.git
-cd opencv_contrib
-git checkout "$cvVersion"
-cd ..
+#cd $cwd/opencv_contrib
+#git checkout "$cvVersion"
+#cd ..
+
+#sudo apt -y install gstreamer1.0-omx-generic gstreamer1.0-plugins-ugly-dbg gst-omx-listcomponents gstreamer1.0-omx-generic-config gstreamer1.0-plugins-ugly-doc gstreamer0.10-qapt gstreamer1.0-opencv gstreamer1.0-pocketsphinx gstreamer1.0-alsa gstreamer1.0-packagekit gstreamer1.0-pulseaudio gstreamer1.0-clutter-3.0 gstreamer1.0-plugins-bad gstreamer1.0-crystalhd gstreamer1.0-plugins-bad-dbg gstreamer1.0-python3-plugin-loader gstreamer1.0-doc gstreamer1.0-plugins-bad-doc gstreamer1.0-qt5 gstreamer1.0-espeak gstreamer1.0-plugins-base gstreamer1.0-rtsp gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-base-apps gstreamer1.0-rtsp-dbg gstreamer1.0-gl gstreamer1.0-plugins-base-dbg gstreamer1.0-tools gstreamer1.0-gtk3 gstreamer1.0-plugins-base-doc gstreamer1.0-vaapi gstreamer1.0-libav gstreamer1.0-plugins-good gstreamer1.0-vaapi-doc gstreamer1.0-libav-dbg gstreamer1.0-plugins-good-dbg gstreamer1.0-x gstreamer1.0-nice gstreamer1.0-plugins-good-doc gstreamer-qapt gstreamer1.0-omx-bellagio-config gstreamer1.0-plugins-ugly
+
+#gstreamer1.0-python3-dbg-plugin-loader
+#/DEVs/Machine-Learning/PyTorch/Face/Prototype/opencv_test_2/FaceDetectionComparison
