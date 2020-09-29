@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+#FROM liprin1129/ubuntu18.04:cudagl10.0-cudnn7.5-boost-qt5-pytorch-opencv-zed
+FROM liprin1129/stock-analysis:python
+=======
 FROM liprin1129/dev:v7-opencv
+>>>>>>> 52e002260c171ea92cbecddeb353ad19ca9bc5d2
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -26,7 +31,10 @@ RUN apt install -y -qq --no-install-recommends python3-pip
 
 #RUN sudo -H pip3 install setuptools
 #RUN pip3 install pylint
+<<<<<<< HEAD
+=======
 RUN pip3 install flake8
+>>>>>>> 52e002260c171ea92cbecddeb353ad19ca9bc5d2
 #RUN sudo -H pip install setuptools #pylint
 
 RUN rm -rf /tmp/*
